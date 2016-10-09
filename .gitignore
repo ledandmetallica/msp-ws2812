@@ -31,3 +31,14 @@
 # Debug files
 *.dSYM/
 *.su
+
+# Project files
+Debug/
+.vscode/
+.settings/
+.launches/
+.project
+.cproject
+.ccsproject
+*.ccxml
+
