@@ -38,13 +38,13 @@ void ws2812_SPIIntHandler(void) {
 	    uint8_t byte = *rgbDataPointer++;
 
 		rgbDataCounter--;
-
+		
 		while(bitNum++ < 7) {
-			UCB0TXBUF = lookupTable[byte & 0x01];
-			byte >>= 1;
-			while (!(SPI_getInterruptStatus(EUSCI_B0_BASE, EUSCI_B_SPI_TRANSMIT_INTERRUPT)));
+		    UCB0TXBUF = lookupTable[(byte>>7 & 0x01)];
+		    byte <<= 1;
+		    while (!(SPI_getInterruptStatus(EUSCI_B0_BASE, EUSCI_B_SPI_TRANSMIT_INTERRUPT)));
 		}
-		UCB0TXBUF = lookupTable[byte & 0x01];
+		UCB0TXBUF = lookupTable[(byte>>7 & 0x01)];
 	}
 }
 
